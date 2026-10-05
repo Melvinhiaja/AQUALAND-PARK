@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aqua Land Waterpark Serang — Kolam Olimpik, Waterboom & Kids Zone</title>
+    <meta name="description" content="Aqua Land Waterpark Serang — kolam olimpik, kolam arus, mini waterboom, water playground, dan kolam balita. Buka 08.00–17.00 WIB. Tiket mulai Rp30.000." />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png?v=2">
+    <link rel="shortcut icon" href="assets/favicon.png?v=2">
+    <link rel="apple-touch-icon" href="assets/favicon.png?v=2">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+         :root {
+            --blue: #1E6FB8;
+            --blue-dark: #164F86;
+            --blue-light: #E8F1FA;
+            --orange: #F5A623;
+            --orange-light: #FDF3E0;
+            --lime: #D4F542;
+            --canvas: #F4F7EC;
+            --card: #FFFFFF;
+            --overlay: #0E2A47;
+            --text: #1A2B3E;
+            --text-muted: #5E6E7E;
+            --text-soft: #8A96A2;
+            --border: #E4E9DD;
+            --border-strong: #D0D9C7;
+            --shadow-sm: 0 1px 2px rgba(26, 43, 62, 0.05);
+            --shadow-md: 0 4px 16px -4px rgba(26, 43, 62, 0.10);
+            --shadow-lg: 0 20px 40px -16px rgba(26, 43, 62, 0.24);
+            --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-display: 'Baloo 2', 'Inter', system-ui, sans-serif;
+            --pad: 6vw;
+            /* ===== EASING TOKENS ===== */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+            background: var(--canvas);
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        img {
+            display: block;
+            max-width: 100%;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        button {
+            font: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            color: var(--text);
+            line-height: 1.15;
+        }
+        
+        section {
+            width: 100%;
+            padding-block: 90px;
+            padding-inline: var(--pad);
+        }
+        
+        .section-head {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 900px;
+            margin-bottom: 48px;
+        }
+        
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--blue);
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        .eyebrow::before {
+            content: "";
+            width: 24px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+        }
+        
+        .heading-lg {
+            font-weight: 700;
+            font-size: clamp(28px, 4vw, 44px);
+            letter-spacing: -0.005em;
+        }
+        
+        .body-lg {
+            font-size: 17px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .muted {
+            color: var(--text-muted);
+        }
+        /* ===== REVEAL ON SCROLL ===== */
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+            will-change: opacity, transform;
+        }
+        
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-stagger>* {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+        
+        .reveal-stagger.is-visible>* {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(1) {
+            transition-delay: 0.05s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(2) {
+            transition-delay: 0.12s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(3) {
+            transition-delay: 0.19s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(4) {
+            transition-delay: 0.26s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(5) {
+            transition-delay: 0.33s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(6) {
+            transition-delay: 0.40s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(7) {
+            transition-delay: 0.47s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(8) {
+            transition-delay: 0.54s;
+        }
+        
+        .reveal-stagger.is-visible>*:nth-child(9) {
+            transition-delay: 0.61s;
+        }
+        /* ===== BUTTON ===== */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 26px;
+            transition: background-color .35s var(--ease-smooth), color .35s var(--ease-smooth), border-color .35s var(--ease-smooth), transform .35s var(--ease-out-back), box-shadow .35s var(--ease-smooth);
+            white-space: nowrap;
+            line-height: 1;
+            cursor: pointer;
+            border: 1.5px solid transparent;
+        }
+        
+        .btn-primary {
+            background: var(--blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(30, 111, 184, 0.55);
+        }
+        
+        .btn-accent {
+            background: var(--orange);
+            color: white;
+        }
+        
+        .btn-accent:hover {
+            background: #DC8F12;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -10px rgba(245, 166, 35, 0.55);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+        
+        .btn-outline:hover {
+            background: var(--blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-white {
+            background: white;
+            color: var(--blue);
+        }
+        
+        .btn-white:hover {
+            background: #EEF2E4;
+            transform: translateY(-2px);
+        }
+        
+        .btn-lg {
+            padding: 16px 30px;
+            font-size: 17px;
+        }
+        /* ===== NAV ===== */
+        
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.62);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: background-color .4s var(--ease-smooth), box-shadow .4s var(--ease-smooth);
+        }
+        
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 4px 20px -12px rgba(26, 43, 62, 0.18);
+        }
+        
+        .nav-inner {
+            width: 100%;
+            padding: 10px var(--pad);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 2px solid var(--blue-light);
+            transition: transform .5s var(--ease-out-back);
+        }
+        
+        .brand:hover .brand-logo {
+            transform: rotate(-8deg) scale(1.06);
+        }
+        
+        .brand-fallback {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .brand-mark {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--lime);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+        
+        .brand-mark svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        
+        .brand-text .name {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 19px;
+            color: var(--blue);
+        }
+        
+        .brand-text .name em {
+            font-style: normal;
+            color: var(--orange);
+        }
+        
+        .brand-text .tag {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            margin-top: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        .nav-links a {
+            padding: 9px 16px;
+            border-radius: 999px;
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--text);
+            transition: background-color .3s var(--ease-smooth), color .3s var(--ease-smooth);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(30, 111, 184, 0.10);
+            color: var(--blue);
+        }
+        
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid var(--border);
+            align-items: center;
+            justify-content: center;
+            transition: transform .3s var(--ease-out-back);
+        }
+        
+        .nav-toggle:active {
+            transform: scale(0.92);
+        }
+        
+        .nav-toggle span {
+            display: block;
+            width: 16px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            position: relative;
+            transition: background-color .3s var(--ease-smooth);
+        }
+        
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 16px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: transform .4s var(--ease-out-back);
+        }
+        
+        .nav-toggle span::before {
+            top: -5px;
+        }
+        
+        .nav-toggle span::after {
+            top: 5px;
+        }
+        
+        .nav-toggle.open span {
+            background: transparent;
+        }
+        
+        .nav-toggle.open span::before {
+            transform: translateY(5px) rotate(45deg);
+        }
+        
+        .nav-toggle.open span::after {
+            transform: translateY(-5px) rotate(-45deg);
+        }
+        
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            padding: 12px var(--pad) 20px;
+            background: rgba(255, 255, 255, 0.98);
+            border-top: 1px solid var(--border);
+            animation: menuSlide .4s var(--ease-out-expo);
+        }
+        
+        @keyframes menuSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-menu.open {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color .3s var(--ease-smooth), color .3s var(--ease-smooth);
+        }
+        
+        .mobile-menu a:hover {
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+        
+        .mobile-menu .btn {
+            margin-top: 8px;
+            color: white;
+        }
+        /* ===== HERO ===== */
+        
+        .hero {
+            width: 100%;
+            min-height: 100vh;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background: var(--overlay);
+        }
+        
+        .hero-media {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: var(--overlay);
+        }
+        
+        .hero-video,
+        .hero-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .hero-video {
+            animation: heroZoom 18s var(--ease-smooth) infinite alternate;
+        }
+        
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.08);
+            }
+        }
+        
+        .hero-fallback {
+            background-size: cover;
+            background-position: center;
+            background-color: var(--overlay);
+            z-index: 1;
+            display: none;
+            filter: blur(8px);
+            transform: scale(1.08);
+        }
+        
+        .hero-media.video-failed .hero-fallback {
+            display: block;
+        }
+        
+        .hero-media.video-failed .hero-video {
+            display: none;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(180deg, rgba(14, 42, 71, 0.55) 0%, rgba(14, 42, 71, 0.35) 40%, rgba(14, 42, 71, 0.80) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            padding: 140px var(--pad) 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(38px, 7vw, 90px);
+            line-height: 1.05;
+            letter-spacing: -0.015em;
+            max-width: 1100px;
+            perspective: 800px;
+        }
+        
+        .hero h1 .line {
+            display: block;
+            animation: heroLineIn 1.1s var(--ease-out-expo) both;
+        }
+        
+        .hero h1 .line:nth-child(1) {
+            animation-delay: 0.15s;
+        }
+        
+        .hero h1 .line:nth-child(2) {
+            animation-delay: 0.30s;
+        }
+        
+        @keyframes heroLineIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) rotateX(-25deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+        
+        .hero h1 .line-2 {
+            color: var(--lime);
+        }
+        
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.94);
+            font-size: clamp(16px, 1.5vw, 19px);
+            line-height: 1.55;
+            font-weight: 500;
+            max-width: 680px;
+            animation: heroFadeUp 1s var(--ease-out-expo) 0.55s both;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+            animation: heroFadeUp 1s var(--ease-out-expo) 0.75s both;
+        }
+        
+        @keyframes heroFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-actions .btn-outline {
+            border-color: rgba(255, 255, 255, 0.75);
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero-actions .btn-outline:hover {
+            background: white;
+            color: var(--blue);
+            border-color: white;
+        }
+        
+        .hero-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px 72px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.22);
+            width: 100%;
+            max-width: 900px;
+            animation: heroFadeUp 1s var(--ease-out-expo) 0.95s both;
+        }
+        
+        .hero-strip-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: left;
+            min-width: 120px;
+        }
+        
+        .hero-strip-item .label {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.72);
+            font-weight: 700;
+        }
+        
+        .hero-strip-item .value {
+            font-size: 17px;
+            color: white;
+            font-weight: 700;
+        }
+        /* ===== MARQUEE ===== */
+        
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            background: transparent;
+            padding-block: 16px;
+            border-top: 1px dashed rgba(30, 111, 184, 0.20);
+            border-bottom: 1px dashed rgba(30, 111, 184, 0.20);
+        }
+        
+        .marquee-track {
+            display: flex;
+            gap: 36px;
+            width: max-content;
+            animation: marquee 50s linear infinite;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        @keyframes marquee {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+            to {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+        
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--blue);
+            white-space: nowrap;
+        }
+        
+        .marquee-item::after {
+            content: "•";
+            color: var(--orange);
+            font-size: 18px;
+        }
+        /* ===== STACKED CARDS ===== */
+        
+        .wahana-container {
+            position: relative;
+            min-height: 480px;
+            width: 100%;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Base card */
+        
+        .wahana-card {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #E9EFDD;
+            isolation: isolate;
+            box-shadow: var(--shadow-sm);
+            transition: transform .7s var(--ease-out-back), box-shadow .5s var(--ease-smooth);
+            will-change: transform;
+        }
+        
+        .wahana-card:hover .img-box {
+            transform: scale(1.06);
+            transition-duration: .9s;
+        }
+        /* Stacked state */
+        
+        .wahana-grid.is-stacked {
+            display: block;
+            position: relative;
+            height: 480px;
+            max-width: 600px;
+            margin: 0 auto;
+            perspective: 1200px;
+        }
+        
+        .wahana-grid.is-stacked .wahana-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 12px 32px rgba(26, 43, 62, 0.25);
+            animation: cardIdleFloat 6s var(--ease-smooth) infinite;
+        }
+        
+        @keyframes cardIdleFloat {
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.03);
+            }
+        }
+        
+        .wahana-grid.is-stacked .wahana-card:nth-child(1) {
+            transform: rotate(-6deg) translate3d(-10px, 0, 0);
+            z-index: 5;
+            animation-delay: 0s;
+        }
+        
+        .wahana-grid.is-stacked .wahana-card:nth-child(2) {
+            transform: rotate(4deg) translate3d(8px, 10px, 0);
+            z-index: 4;
+            animation-delay: .4s;
+        }
+        
+        .wahana-grid.is-stacked .wahana-card:nth-child(3) {
+            transform: rotate(-3deg) translate3d(-5px, 20px, 0);
+            z-index: 3;
+            animation-delay: .8s;
+        }
+        
+        .wahana-grid.is-stacked .wahana-card:nth-child(4) {
+            transform: rotate(5deg) translate3d(12px, 30px, 0);
+            z-index: 2;
+            animation-delay: 1.2s;
+        }
+        
+        .wahana-grid.is-stacked .wahana-card:nth-child(5) {
+            transform: rotate(-2deg) translate3d(-8px, 40px, 0);
+            z-index: 1;
+            animation-delay: 1.6s;
+        }
+        
+        .wahana-grid.is-stacked:hover .wahana-card:nth-child(1) {
+            transform: rotate(-9deg) translate3d(-22px, -12px, 0) scale(1.02);
+            transition-duration: .8s;
+        }
+        
+        .wahana-grid.is-stacked:hover .wahana-card:nth-child(2) {
+            transform: rotate(7deg) translate3d(22px, 4px, 0) scale(1.02);
+            transition-duration: .8s;
+        }
+        
+        .wahana-grid.is-stacked:hover .wahana-card:nth-child(3) {
+            transform: rotate(-4deg) translate3d(-14px, 22px, 0) scale(1.02);
+            transition-duration: .8s;
+        }
+        
+        .wahana-grid.is-stacked:hover .wahana-card:nth-child(4) {
+            transform: rotate(7deg) translate3d(18px, 32px, 0) scale(1.02);
+            transition-duration: .8s;
+        }
+        
+        .wahana-grid.is-stacked:hover .wahana-card:nth-child(5) {
+            transform: rotate(-3deg) translate3d(-12px, 44px, 0) scale(1.02);
+            transition-duration: .8s;
+        }
+        /* Spread state */
+        
+        .wahana-grid.is-spread {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            height: auto;
+            max-width: 100%;
+        }
+        
+        .wahana-grid.is-spread .wahana-card {
+            position: relative;
+            transform: rotate(0) translate3d(0, 0, 0);
+            z-index: 1 !important;
+            animation: cardSpreadIn .9s var(--ease-out-back) both;
+        }
+        
+        .wahana-grid.is-spread .wahana-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .wahana-grid.is-spread .wahana-card:nth-child(2) {
+            animation-delay: .07s;
+        }
+        
+        .wahana-grid.is-spread .wahana-card:nth-child(3) {
+            animation-delay: .14s;
+        }
+        
+        .wahana-grid.is-spread .wahana-card:nth-child(4) {
+            animation-delay: .21s;
+        }
+        
+        .wahana-grid.is-spread .wahana-card:nth-child(5) {
+            animation-delay: .28s;
+        }
+        
+        @keyframes cardSpreadIn {
+            0% {
+                opacity: 0;
+                transform: rotate(0) translate3d(0, 40px, 0) scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(0) translate3d(0, 0, 0) scale(1);
+            }
+        }
+        
+        .wahana-grid.is-spread .wahana-card:hover {
+            transform: translate3d(0, -8px, 0) scale(1.02) !important;
+            box-shadow: var(--shadow-lg);
+            z-index: 10 !important;
+        }
+        /* ===== Image box ===== */
+        
+        .img-box {
+            background-size: cover;
+            background-position: center;
+            background-color: #E9EFDD;
+            position: absolute;
+            inset: 0;
+            transition: transform 1s var(--ease-smooth);
+        }
+        
+        .img-box.is-empty {
+            background: repeating-linear-gradient(-45deg, #E9EFDD 0px, #E9EFDD 14px, #DFE6D1 14px, #DFE6D1 28px);
+        }
+        
+        .img-box.is-empty::before {
+            content: attr(data-label);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--blue);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(30, 111, 184, 0.28);
+            border-radius: 999px;
+            padding: 6px 14px;
+            white-space: nowrap;
+        }
+        /* ===== CARD OVERLAY ===== */
+        
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(14, 42, 71, 0) 0%, rgba(14, 42, 71, 0.10) 35%, rgba(14, 42, 71, 0.75) 75%, rgba(14, 42, 71, 0.95) 100%);
+        }
+        
+        .card-body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 26px 24px;
+            z-index: 2;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: transform .6s var(--ease-out-expo);
+        }
+        
+        .wahana-card:hover .card-body,
+        .fasilitas-card:hover .card-body,
+        .galeri-card:hover .card-body {
+            transform: translateY(-4px);
+        }
+        
+        .card-body h3 {
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.005em;
+        }
+        
+        .card-body p {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 13.5px;
+            line-height: 1.55;
+        }
+        
+        .card-body .card-meta {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+        
+        .card-body .card-meta .tag {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: white;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 999px;
+            padding: 5px 11px;
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            z-index: 3;
+            font-family: var(--font-display);
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blue-dark);
+            background: var(--lime);
+            border-radius: 999px;
+            padding: 7px 14px;
+            transition: transform .5s var(--ease-out-back);
+        }
+        
+        .wahana-card:hover .card-badge,
+        .fasilitas-card:hover .card-badge {
+            transform: translateY(-3px) scale(1.05);
+        }
+        /* ===== FASILITAS GRID ===== */
+        
+        .fasilitas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .fasilitas-card {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #E9EFDD;
+            isolation: isolate;
+            box-shadow: var(--shadow-sm);
+            transition: transform .7s var(--ease-out-back), box-shadow .5s var(--ease-smooth);
+            will-change: transform;
+        }
+        
+        .fasilitas-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .fasilitas-card:hover .img-box {
+            transform: scale(1.07);
+        }
+        /* ===== GALERI ===== */
+        
+        .galeri-wrap {
+            width: 100%;
+            overflow: hidden;
+            padding-block: 8px;
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, black 4%, black 96%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, black 4%, black 96%, transparent 100%);
+        }
+        
+        .galeri-track {
+            display: flex;
+            gap: 18px;
+            width: max-content;
+            animation: galeriScroll 60s linear infinite;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        .galeri-wrap:hover .galeri-track {
+            animation-play-state: paused;
+        }
+        
+        @keyframes galeriScroll {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+            to {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+        
+        .galeri-card {
+            position: relative;
+            width: 320px;
+            height: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #E9EFDD;
+            isolation: isolate;
+            box-shadow: var(--shadow-sm);
+            transition: transform .7s var(--ease-out-back), box-shadow .5s var(--ease-smooth);
+            will-change: transform;
+        }
+        
+        .galeri-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .galeri-card:hover .img-box {
+            transform: scale(1.08);
+        }
+        
+        .galeri-card .card-body {
+            padding: 20px;
+        }
+        
+        .galeri-card .card-body h3 {
+            font-size: 18px;
+        }
+        /* ===== TIKET ===== */
+        
+        .tiket-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .tiket-card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            transition: transform .6s var(--ease-out-back), box-shadow .5s var(--ease-smooth), border-color .4s var(--ease-smooth);
+        }
+        
+        .tiket-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .tiket-card.highlight {
+            border-color: var(--blue);
+            border-width: 1.5px;
+        }
+        
+        .tiket-badge {
+            display: inline-flex;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--orange);
+            background: var(--orange-light);
+            padding: 6px 14px;
+            border-radius: 999px;
+            width: fit-content;
+        }
+        
+        .tiket-head {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .tiket-head h3 {
+            font-size: 24px;
+        }
+        
+        .tiket-head .period {
+            font-size: 14px;
+            color: var(--text-soft);
+            font-weight: 500;
+        }
+        
+        .tiket-prices {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tiket-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .tiket-row:last-child {
+            border-bottom: none;
+        }
+        
+        .tiket-row .cat {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .tiket-row .price {
+            font-family: var(--font-display);
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--blue);
+            letter-spacing: -0.01em;
+            line-height: 1;
+        }
+        
+        .tiket-row .price small {
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: var(--text-soft);
+            font-weight: 500;
+            margin-left: 2px;
+        }
+        
+        .tiket-note {
+            font-size: 13.5px;
+            color: var(--text-soft);
+            line-height: 1.55;
+            padding-top: 6px;
+            border-top: 1px dashed var(--border);
+        }
+        /* ===== LOKASI ===== */
+        
+        .lokasi {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+        }
+        
+        .map-wrap {
+            border-radius: 14px;
+            overflow: hidden;
+            min-height: 500px;
+            background: var(--card);
+            border: 1px solid var(--border);
+        }
+        
+        .map-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+            min-height: 500px;
+        }
+        
+        .lokasi-info {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+        
+        .info-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .info-row:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .info-row .label {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--blue);
+            font-weight: 700;
+        }
+        
+        .info-row .value {
+            font-size: 16px;
+            color: var(--text);
+            font-weight: 700;
+            line-height: 1.45;
+        }
+        
+        .info-row .value span {
+            color: var(--text-muted);
+            font-weight: 400;
+            display: block;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        /* ===== CTA ===== */
+        
+        .cta-banner {
+            background: var(--blue);
+            border-radius: 18px;
+            padding: 80px 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-banner::before {
+            content: "";
+            position: absolute;
+            inset: -50% -20%;
+            background: radial-gradient(circle at 30% 30%, rgba(212, 245, 66, 0.18), transparent 45%), radial-gradient(circle at 70% 70%, rgba(245, 166, 35, 0.16), transparent 45%);
+            animation: ctaGlow 12s var(--ease-smooth) infinite alternate;
+        }
+        
+        @keyframes ctaGlow {
+            from {
+                transform: translate3d(0, 0, 0) rotate(0deg);
+            }
+            to {
+                transform: translate3d(4%, -4%, 0) rotate(8deg);
+            }
+        }
+        
+        .cta-banner>* {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-banner .eyebrow {
+            color: var(--lime);
+        }
+        
+        .cta-banner .eyebrow::before {
+            background: var(--lime);
+        }
+        
+        .cta-banner h2 {
+            color: white;
+            max-width: 720px;
+            font-size: clamp(26px, 3.4vw, 40px);
+        }
+        
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.88);
+            max-width: 560px;
+            font-size: 16px;
+        }
+        /* ===== FOOTER ===== */
+        
+        footer {
+            width: 100%;
+            background: var(--card);
+            border-top: 1px solid var(--border);
+            padding: 64px var(--pad) 32px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 44px;
+        }
+        
+        .footer-col h4 {
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--blue);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .footer-col a {
+            color: var(--text-muted);
+            font-size: 14.5px;
+            font-weight: 500;
+            transition: color .3s var(--ease-smooth), transform .3s var(--ease-smooth);
+            display: inline-block;
+        }
+        
+        .footer-col a:hover {
+            color: var(--blue);
+            transform: translateX(4px);
+        }
+        
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 14px;
+            max-width: 340px;
+            margin-top: 14px;
+            line-height: 1.6;
+        }
+        
+        .footer-brand .brand-logo {
+            width: 54px;
+            height: 54px;
+        }
+        
+        .footer-bottom {
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-bottom p {
+            font-size: 13px;
+            color: var(--text-soft);
+        }
+        /* ===== FAB ===== */
+        
+        .fab {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 90;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background-color .35s var(--ease-smooth), transform .45s var(--ease-out-back), box-shadow .35s var(--ease-smooth);
+            box-shadow: 0 8px 20px -8px rgba(30, 111, 184, 0.5);
+            animation: fabBob 3s var(--ease-smooth) infinite;
+        }
+        
+        @keyframes fabBob {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+        
+        .fab:hover {
+            background: var(--blue-dark);
+            transform: translateY(-4px) scale(1.04);
+            animation-play-state: paused;
+            box-shadow: 0 14px 28px -10px rgba(30, 111, 184, 0.65);
+        }
+        
+        .fab svg {
+            width: 18px;
+            height: 18px;
+        }
+        /* ===== RESPONSIVE ===== */
+        
+        @media (max-width: 1100px) {
+            .fasilitas-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 960px) {
+             :root {
+                --pad: 5vw;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+            section {
+                padding-block: 64px;
+            }
+            .card-body {
+                padding: 20px 18px;
+            }
+            .card-body h3 {
+                font-size: 19px;
+            }
+            .card-body p {
+                font-size: 12.5px;
+            }
+            .wahana-grid.is-spread {
+                grid-template-columns: 1fr;
+            }
+            .fasilitas-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .galeri-card {
+                width: 260px;
+                height: 340px;
+            }
+            .tiket-grid {
+                grid-template-columns: 1fr;
+            }
+            .lokasi {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+            .hero-strip {
+                gap: 24px 40px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+             :root {
+                --pad: 5vw;
+            }
+            .hero-content {
+                padding: 120px var(--pad) 60px;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+            }
+            .wahana-grid.is-stacked {
+                height: 380px;
+            }
+            .wahana-card {
+                aspect-ratio: 4 / 3;
+            }
+            .card-body {
+                padding: 16px 14px;
+            }
+            .card-body h3 {
+                font-size: 18px;
+            }
+            .card-body p {
+                font-size: 12px;
+            }
+            .card-badge {
+                top: 12px;
+                left: 12px;
+                padding: 5px 10px;
+                font-size: 9px;
+            }
+            .fasilitas-grid {
+                grid-template-columns: 1fr;
+            }
+            .galeri-card {
+                width: 220px;
+                height: 300px;
+            }
+            .galeri-card .card-body h3 {
+                font-size: 16px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .fab span {
+                display: none;
+            }
+            .fab {
+                padding: 14px;
+                border-radius: 50%;
+            }
+            .tiket-card {
+                padding: 26px 22px;
+            }
+            .tiket-row .price {
+                font-size: 28px;
+            }
+            .brand-logo {
+                width: 40px;
+                height: 40px;
+            }
+            .brand-text .name {
+                font-size: 17px;
+            }
+        }
+        /* Reduced motion */
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================ NAV ============================ -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="brand">
+                <img class="brand-logo" src="assets/logo.png" alt="Aqua Land Waterpark Serang" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <span class="brand-fallback">
+                    <span class="brand-mark">
+                        <svg viewBox="0 0 32 32" fill="none">
+                            <path d="M4 12 Q9 7 16 12 T28 12" stroke="#1E6FB8" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                            <path d="M4 20 Q9 15 16 20 T28 20" stroke="#1E6FB8" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                            <path d="M4 27 Q9 22 16 27 T28 27" stroke="#F5A623" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                        </svg>
+                    </span>
+                <span class="brand-text">
+                        <span class="name">Aqua<em>Land</em></span>
+                <span class="tag">Waterpark Serang</span>
+                </span>
+                </span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#wahana">Wahana</a>
+                <a href="#fasilitas">Fasilitas</a>
+                <a href="#galeri">Galeri</a>
+                <a href="#tiket">Tiket</a>
+                <a href="#lokasi">Lokasi</a>
+            </div>
+
+            <div class="nav-cta">
+                <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#wahana">Wahana</a>
+            <a href="#fasilitas">Fasilitas</a>
+            <a href="#galeri">Galeri</a>
+            <a href="#tiket">Tiket</a>
+            <a href="#lokasi">Lokasi</a>
+            <a class="btn btn-primary" href="https://wa.me/6281234567890?text=Halo%20Aqua%20Land%20Waterpark%20Serang%2C%20saya%20mau%20pesan%20tiket" target="_blank" rel="noopener">Pesan Tiket</a>
+        </div>
+    </nav>
+
+    <!-- ============================ HERO ============================ -->
+    <header class="hero" id="hero">
+        <div class="hero-media" id="heroMedia">
+            <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-bg.jpg">
+                <source src="assets/hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="hero-fallback" data-img="assets/hero-bg.jpg" data-label="Gambar Hero Aqua Land"></div>
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>
+                <span class="line">Aqua Land</span>
+                <span class="line line-2"> Waterpark</span>
+            </h1>
+
+            <p class="hero-sub">
+                Kolam olimpik, kolam arus, seluncuran tinggi waterboom, dan water playground untuk anak. Tempat favorit keluarga di Serang untuk hari yang penuh cipratan seru.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn btn-accent btn-lg" href="https://wa.me/6281234567890?text=Halo%20Aqua%20Land%20Waterpark%20Serang%2C%20saya%20mau%20pesan%20tiket" target="_blank" rel="noopener">Pesan Tiket</a>
+                <a class="btn btn-outline btn-lg" href="#wahana">Lihat Wahana</a>
+            </div>
+
+            <div class="hero-strip">
+                <div class="hero-strip-item">
+                    <span class="label">Jam Buka</span>
+                    <span class="value">08.00 – 17.00 WIB</span>
+                </div>
+                <div class="hero-strip-item">
+                    <span class="label">Mulai Dari</span>
+                    <span class="value">Rp 30.000</span>
+                </div>
+                <div class="hero-strip-item">
+                    <span class="label">Lokasi</span>
+                    <span class="value">Serang, Banten</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================ MARQUEE ============================ -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span class="marquee-item">Water Slide</span>
+            <span class="marquee-item">Kolam Olimpik</span>
+            <span class="marquee-item">Kolam Arus</span>
+            <span class="marquee-item">Mini Waterboom</span>
+            <span class="marquee-item">Water Playground</span>
+            <span class="marquee-item">Kolam Balita</span>
+            <span class="marquee-item">Rumah Adat Toraja</span>
+            <span class="marquee-item">Buka Setiap Hari</span>
+            <span class="marquee-item">Water Slide</span>
+            <span class="marquee-item">Kolam Olimpik</span>
+            <span class="marquee-item">Kolam Arus</span>
+            <span class="marquee-item">Mini Waterboom</span>
+            <span class="marquee-item">Water Playground</span>
+            <span class="marquee-item">Kolam Balita</span>
+        </div>
+    </div>
+
+    <!-- ============================ WAHANA ============================ -->
+    <section id="wahana">
+        <div class="section-head reveal">
+            <span class="eyebrow">Wahana</span>
+            <h2 class="heading-lg">Kolam & Seluncuran Seru</h2>
+            <p class="body-lg muted">Dari seluncuran tinggi yang menguji adrenalin, kolam olimpik, hingga kolam anak yang aman.</p>
+        </div>
+
+        <div class="wahana-container" id="wahanaContainer" role="button" tabindex="0" aria-label="Klik untuk membuka daftar wahana">
+            <div class="wahana-grid is-stacked" id="wahanaGrid">
+
+                <article class="wahana-card">
+                    <div class="img-box" data-img="assets/wahana-slide.jpg" data-label="Water Slide / Perosotan Tinggi"></div>
+                    <div class="card-overlay"></div>
+                    <span class="card-badge">Sensasi Seru</span>
+                    <div class="card-body">
+                        <h3>Water Slide (Perosotan Tinggi)</h3>
+                        <p>Seluncuran air tinggi berkelok yang memicu adrenalin dengan pendaratan meluncur deras ke kolam utama.</p>
+                        <div class="card-meta">
+                            <span class="tag">Perosotan Tinggi</span>
+                            <span class="tag">Adrenalin</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="wahana-card">
+                    <div class="img-box" data-img="assets/wahana-olimpik.jpg" data-label="Kolam Olimpik"></div>
+                    <div class="card-overlay"></div>
+                    <span class="card-badge">Unggulan</span>
+                    <div class="card-body">
+                        <h3>Kolam Olimpik</h3>
+                        <p>Kolam renang dewasa dengan kedalaman 1,5 meter dan 6 jalur lintasan. Cocok untuk olahraga dan latihan renang.</p>
+                        <div class="card-meta">
+                            <span class="tag">6 Jalur Lintasan</span>
+                            <span class="tag">1,5 m</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="wahana-card">
+                    <div class="img-box" data-img="assets/wahana-arus.jpg" data-label="Kolam Arus"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-body">
+                        <h3>Kolam Arus</h3>
+                        <p>Jalur air mengalir yang memutar, tempat bersantai mengapung menggunakan ban mengikuti arus air.</p>
+                        <div class="card-meta">
+                            <span class="tag">Semua Usia</span>
+                            <span class="tag">Santai</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="wahana-card">
+                    <div class="img-box" data-img="assets/wahana-playground.jpg" data-label="Water Playground"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-body">
+                        <h3>Water Playground</h3>
+                        <p>Area bermain air dangkal untuk anak dengan 3 jenis seluncuran mini, air mancur, dan ember tumpah.</p>
+                        <div class="card-meta">
+                            <span class="tag">3 Seluncuran Mini</span>
+                            <span class="tag">Ember Tumpah</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="wahana-card">
+                    <div class="img-box" data-img="assets/wahana-balita.jpg" data-label="Kolam Balita"></div>
+                    <div class="card-overlay"></div>
+                    <div class="card-body">
+                        <h3>Kolam Balita</h3>
+                        <p>Kolam khusus dengan kedalaman dangkal — aman dan ramah untuk si kecil bermain air dengan nyaman.</p>
+                        <div class="card-meta">
+                            <span class="tag">Aman Balita</span>
+                            <span class="tag">Dangkal</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ FASILITAS ============================ -->
+    <section id="fasilitas">
+        <div class="section-head reveal">
+            <span class="eyebrow">Fasilitas</span>
+            <h2 class="heading-lg">Semua yang kamu butuhkan ada di dalam</h2>
+            <p class="body-lg muted">Fasilitas lengkap supaya waktu kamu di Aqua Land cuma dipakai untuk bersenang-senang.</p>
+        </div>
+
+        <div class="fasilitas-grid reveal-stagger">
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-toraja.jpg" data-label="Rumah Adat Toraja"></div>
+                <div class="card-overlay"></div>
+                <span class="card-badge">Ikonik</span>
+                <div class="card-body">
+                    <h3>Rumah Adat Toraja</h3>
+                    <p>Spot foto ikonik di area waterpark — cocok untuk berfoto bersama keluarga atau rombongan.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-ban.jpg" data-label="Tempat Sewa Ban"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Tempat Sewa Ban</h3>
+                    <p>Ban pelampung tersedia untuk disewa di lokasi — lebih praktis kalau tidak bawa dari rumah.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-kantin.jpg" data-label="Kantin"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kantin</h3>
+                    <p>Pilihan makanan lokal dan camilan dengan harga terjangkau untuk seluruh keluarga.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-kafe.jpg" data-label="Kafe"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kafe</h3>
+                    <p>Tempat santai untuk ngopi atau minum dingin setelah puas berenang seharian.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-musala.jpg" data-label="Musala"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Musala</h3>
+                    <p>Tempat ibadah yang bersih dan nyaman, tersedia di dalam area waterpark.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-toilet.jpg" data-label="Toilet"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Toilet</h3>
+                    <p>Toilet bersih tersebar di beberapa titik — mudah dijangkau dari semua area kolam.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-bilas.jpg" data-label="Ruang Bilas"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Ruang Bilas</h3>
+                    <p>Ruang bilas dengan air bersih untuk membersihkan diri sebelum pulang.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-ganti.jpg" data-label="Kamar Ganti"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kamar Ganti</h3>
+                    <p>Kamar ganti yang aman dan bersih — bawa pakaian kering untuk setelah berenang.</p>
+                </div>
+            </article>
+
+            <article class="fasilitas-card">
+                <div class="img-box" data-img="assets/fasilitas-gazebo.jpg" data-label="Gazebo"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Gazebo</h3>
+                    <p>Area teduh di sekeliling kolam untuk keluarga bersantai sambil mengawasi anak.</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ============================ GALERI ============================ -->
+    <section id="galeri">
+        <div class="section-head reveal">
+            <span class="eyebrow">Galeri</span>
+            <h2 class="heading-lg">Momen seru di Aqua Land</h2>
+            <p class="body-lg muted">Kolam, wahana, dan momen keluarga — diambil langsung dari area waterpark.</p>
+        </div>
+    </section>
+
+    <div class="galeri-wrap">
+        <div class="galeri-track">
+
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-1.jpg" data-label="Galeri 1"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kolam Ombak</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-2.jpg" data-label="Galeri 2"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Water Playground</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-3.jpg" data-label="Galeri 3"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Water Slide Tinggi</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-4.jpg" data-label="Galeri 4"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kolam Arus</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-5.jpg" data-label="Galeri 5"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kolam Olimpik</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-6.jpg" data-label="Galeri 6"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Area Gazebo</h3>
+                </div>
+            </div>
+
+            <!-- SET 2 (duplikat untuk loop) -->
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-1.jpg" data-label="Galeri 1"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kolam Ombak</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-2.jpg" data-label="Galeri 2"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Water Playground</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-3.jpg" data-label="Galeri 3"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Water Slide Tinggi</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-4.jpg" data-label="Galeri 4"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kolam Arus</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-5.jpg" data-label="Galeri 5"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Kolam Olimpik</h3>
+                </div>
+            </div>
+            <div class="galeri-card">
+                <div class="img-box" data-img="assets/galeri-6.jpg" data-label="Galeri 6"></div>
+                <div class="card-overlay"></div>
+                <div class="card-body">
+                    <h3>Area Gazebo</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================ TIKET ============================ -->
+    <section id="tiket">
+        <div class="section-head reveal">
+            <span class="eyebrow">Tiket</span>
+            <h2 class="heading-lg">Harga tiket masuk</h2>
+            <p class="body-lg muted">Tiket bisa dibeli langsung di loket atau dipesan lebih dulu via WhatsApp untuk hindari antrean.</p>
+        </div>
+
+        <div class="tiket-grid reveal-stagger">
+            <article class="tiket-card">
+                <div class="tiket-head">
+                    <h3>Hari Kerja</h3>
+                    <span class="period">Senin – Jumat</span>
+                </div>
+                <div class="tiket-prices">
+                    <div class="tiket-row">
+                        <span class="cat">Anak-anak</span>
+                        <span class="price">Rp 30.000<small>/orang</small></span>
+                    </div>
+                    <div class="tiket-row">
+                        <span class="cat">Dewasa</span>
+                        <span class="price">Rp 35.000<small>/orang</small></span>
+                    </div>
+                </div>
+                <p class="tiket-note">Berlaku untuk kunjungan hari kerja biasa, tidak termasuk libur nasional.</p>
+                <a class="btn btn-outline" href="https://wa.me/6281234567890?text=Halo%2C%20saya%20mau%20pesan%20tiket%20hari%20kerja" target="_blank" rel="noopener" style="width:100%;">Pesan Tiket Hari Kerja</a>
+            </article>
+
+            <article class="tiket-card highlight">
+                <span class="tiket-badge">Akhir Pekan & Libur</span>
+                <div class="tiket-head">
+                    <h3>Sabtu, Minggu & Libur Nasional</h3>
+                    <span class="period">Hari ramai — datang lebih awal</span>
+                </div>
+                <div class="tiket-prices">
+                    <div class="tiket-row">
+                        <span class="cat">Anak-anak</span>
+                        <span class="price">Rp 35.000<small>/orang</small></span>
+                    </div>
+                    <div class="tiket-row">
+                        <span class="cat">Dewasa</span>
+                        <span class="price">Rp 40.000<small>/orang</small></span>
+                    </div>
+                </div>
+                <p class="tiket-note">Berlaku untuk kunjungan akhir pekan dan hari libur nasional.</p>
+                <a class="btn btn-primary" href="https://wa.me/6281234567890?text=Halo%2C%20saya%20mau%20pesan%20tiket%20akhir%20pekan" target="_blank" rel="noopener" style="width:100%;">Pesan Tiket Akhir Pekan</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- ============================ LOKASI ============================ -->
+    <section id="lokasi">
+        <div class="section-head reveal">
+            <span class="eyebrow">Lokasi & Kontak</span>
+            <h2 class="heading-lg">Cara datang ke Aqua Land</h2>
+        </div>
+
+        <div class="lokasi reveal">
+            <div class="map-wrap">
+                <iframe src="https://maps.google.com/maps?q=Aqualand%20Serang&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi Aqua Land Waterpark Serang"></iframe>
+            </div>
+
+            <div class="lokasi-info">
+                <div class="info-row">
+                    <span class="label">Alamat</span>
+                    <span class="value">Aqua Land Waterpark Serang
+                        <span>Serang, Banten — tepatnya akan dikonfirmasi di peta</span>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Jam Buka</span>
+                    <span class="value">Setiap hari, 08.00 – 17.00 WIB
+                        <span>Loket tiket tutup 1 jam sebelum area tutup</span>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="label">WhatsApp</span>
+                    <span class="value">+62 812-3456-7890
+                        <span>Respon cepat, jam 08.00 – 17.00 WIB</span>
+                    </span>
+                </div>
+                <a class="btn btn-outline" href="https://maps.google.com/?q=Aqualand+Serang" target="_blank" rel="noopener" style="width:100%;">Buka di Google Maps</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ CTA ============================ -->
+    <section>
+        <div class="cta-banner reveal">
+            <span class="eyebrow">Siap datang?</span>
+            <h2>Pesan tiket sekarang, hindari antrean di loket</h2>
+            <p>Cukup kirim pesan WhatsApp, tim kami akan bantu pilih tiket dan jam kunjungan yang paling pas.</p>
+            <a class="btn btn-white btn-lg" href="https://wa.me/6281234567890?text=Halo%20Aqua%20Land%20Waterpark%20Serang%2C%20saya%20mau%20pesan%20tiket" target="_blank" rel="noopener">Pesan Tiket via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="brand">
+                    <img class="brand-logo" src="assets/logo.png" alt="Aqua Land Waterpark Serang" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="brand-fallback">
+                        <span class="brand-mark">
+                            <svg viewBox="0 0 32 32" fill="none">
+                                <path d="M4 12 Q9 7 16 12 T28 12" stroke="#1E6FB8" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                                <path d="M4 20 Q9 15 16 20 T28 20" stroke="#1E6FB8" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                                <path d="M4 27 Q9 22 16 27 T28 27" stroke="#F5A623" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                            </svg>
+                        </span>
+                    <span class="brand-text">
+                            <span class="name">Aqua<em>Land</em></span>
+                    <span class="tag">Waterpark Serang</span>
+                    </span>
+                    </span>
+                </a>
+                <p>Waterpark keluarga di Serang, Banten. Kolam olimpik, kolam arus, water slide perosotan tinggi, water playground, dan kolam balita dalam satu area.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Jelajahi</h4>
+                <ul>
+                    <li><a href="#wahana">Wahana</a></li>
+                    <li><a href="#fasilitas">Fasilitas</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#tiket">Tiket</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Informasi</h4>
+                <ul>
+                    <li><a href="#lokasi">Lokasi & Rute</a></li>
+                    <li><a href="#lokasi">Jam Operasional</a></li>
+                    <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">Kontak WhatsApp</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Ikuti</h4>
+                <ul>
+                    <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">TikTok</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© <span id="year"></span> Aqua Land Waterpark Serang. Seluruh hak cipta dilindungi.</p>
+            <p>Harga dan jam operasional dapat berubah tanpa pemberitahuan.</p>
+        </div>
+    </footer>
+
+    <!-- ============================ FAB ============================ -->
+    <a class="fab" href="https://wa.me/6281234567890?text=Halo%20Aqua%20Land%20Waterpark%20Serang" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.6 6.3A7.9 7.9 0 0 0 12 4a8 8 0 0 0-6.9 12.1L4 20l4-1.1a8 8 0 0 0 11.6-7 7.9 7.9 0 0 0-2-5.6zm-5.6 12.2c-1.3 0-2.6-.35-3.7-1l-.27-.16-2.37.62.63-2.3-.17-.28A6.4 6.4 0 0 1 5.6 12 6.4 6.4 0 1 1 12 18.5zm3.6-4.7c-.2-.1-1.2-.6-1.4-.66-.2-.07-.34-.1-.48.1-.14.2-.55.66-.68.8-.12.13-.25.15-.45.05-.2-.1-.85-.32-1.6-1a6 6 0 0 1-1.12-1.4c-.12-.2 0-.3.1-.4.1-.1.2-.25.3-.38.1-.13.14-.22.2-.36.07-.14.04-.27-.02-.38-.06-.1-.5-1.2-.68-1.65-.18-.42-.36-.36-.5-.37h-.42c-.15 0-.38.05-.58.27-.2.22-.76.74-.76 1.8 0 1.06.78 2.08.88 2.22.1.14 1.5 2.4 3.68 3.28 2.18.88 2.18.6 2.57.55.4-.04 1.28-.52 1.46-1.03.18-.5.18-.94.13-1.03-.05-.1-.2-.15-.4-.25z"/>
+        </svg>
+        <span>Pesan Tiket</span>
+    </a>
+
+    <script>
+        (function() {
+            var $ = function(s, c) {
+                return (c || document).querySelector(s);
+            };
+            var $$ = function(s, c) {
+                return Array.prototype.slice.call((c || document).querySelectorAll(s));
+            };
+
+            /* ===== Video & Fallback ===== */
+            var heroMedia = $('#heroMedia');
+            var heroVideo = $('#heroVideo');
+            if (heroVideo && heroMedia) {
+                heroVideo.addEventListener('loadeddata', function() {
+                    heroMedia.classList.remove('video-failed');
+                });
+                heroVideo.addEventListener('error', function() {
+                    heroMedia.classList.add('video-failed');
+                });
+                var sources = heroVideo.querySelectorAll('source');
+                var errCount = 0;
+                Array.prototype.forEach.call(sources, function(s) {
+                    s.addEventListener('error', function() {
+                        errCount++;
+                        if (errCount >= sources.length) heroMedia.classList.add('video-failed');
+                    });
+                });
+            }
+
+            /* ===== Lazy image box ===== */
+            $$('[data-img]').forEach(function(el) {
+                var src = el.getAttribute('data-img');
+                var label = el.getAttribute('data-label') || 'Gambar';
+                if (!src) return;
+                var test = new Image();
+                test.onload = function() {
+                    el.style.backgroundImage = 'url("' + src + '")';
+                    el.classList.remove('is-empty');
+                };
+                test.onerror = function() {
+                    el.classList.add('is-empty');
+                    el.setAttribute('data-label', label);
+                };
+                test.src = src;
+            });
+
+            /* ===== Nav scrolled ===== */
+            var nav = $('#nav');
+            var ticking = false;
+
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function() {
+                    if (nav) nav.classList.toggle('scrolled', window.scrollY > 24);
+                    ticking = false;
+                });
+            }
+            window.addEventListener('scroll', onScroll, {
+                passive: true
+            });
+            onScroll();
+
+            /* ===== Mobile menu ===== */
+            var toggle = $('#navToggle');
+            var menu = $('#mobileMenu');
+            if (toggle && menu) {
+                toggle.addEventListener('click', function() {
+                    var open = menu.classList.toggle('open');
+                    toggle.classList.toggle('open', open);
+                });
+                $$('#mobileMenu a').forEach(function(a) {
+                    a.addEventListener('click', function() {
+                        menu.classList.remove('open');
+                        toggle.classList.remove('open');
+                    });
+                });
+            }
+
+            /* ===== Year ===== */
+            var yearEl = $('#year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            /* ===== Reveal on scroll ===== */
+            var revealEls = $$('.reveal, .reveal-stagger');
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.12,
+                    rootMargin: '0px 0px -60px 0px'
+                });
+                revealEls.forEach(function(el) {
+                    io.observe(el);
+                });
+            } else {
+                revealEls.forEach(function(el) {
+                    el.classList.add('is-visible');
+                });
+            }
+
+            /* ===== Wahana Stacked ↔ Spread ===== */
+            var container = $('#wahanaContainer');
+            var grid = $('#wahanaGrid');
+
+            if (container && grid) {
+                function toggleWahanaCards() {
+                    var isStacked = grid.classList.contains('is-stacked');
+                    if (isStacked) {
+                        grid.classList.remove('is-stacked');
+                        void grid.offsetWidth; /* force reflow agar animasi restart */
+                        grid.classList.add('is-spread');
+                    } else {
+                        grid.classList.remove('is-spread');
+                        void grid.offsetWidth;
+                        grid.classList.add('is-stacked');
+                    }
+                }
+
+                container.addEventListener('click', function(e) {
+                    /* jangan trigger kalau klik tombol/link di dalam kartu */
+                    if (e.target.closest('a, button')) return;
+                    toggleWahanaCards();
+                });
+
+                /* dukung keyboard (Enter / Space) untuk aksesibilitas */
+                container.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleWahanaCards();
+                    }
+                });
+            }
+        })();
+    </script>
+
+</body>
+
+</html>
